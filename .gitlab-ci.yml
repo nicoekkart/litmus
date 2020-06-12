@@ -9,7 +9,7 @@ stages:
 Build Litmus Image:
   stage: litmusImageBuild
   script:
-    - sudo docker build . -f build/ansible-runner/Dockerfile -t litmuschaos/ansible-runner:ci
+    - sudo docker build . -f build/ansible-runner/Dockerfile -t nicoekkart/ansible-runner:latest
 
 Test Litmus PyTest Suite: 
   stage: litmusPythonTest
@@ -50,4 +50,4 @@ baseline-image:
 Push Litmus Image:
   stage: litmusImagePush
   script:
-    - REPONAME="litmuschaos" IMGNAME="ansible-runner" IMGTAG="ci" ./hack/push
+    - REPONAME="nicoekkart" IMGNAME="ansible-runner" IMGTAG="latest" ./hack/push
