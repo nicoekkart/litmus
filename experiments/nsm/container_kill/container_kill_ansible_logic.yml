@@ -59,6 +59,9 @@
             delay: 2
             retries: 90
 
+        - name: "[Status]: Verify that the wget works"
+          include_tasks: /utils/apps/nsm/nsm_wget_test.yml
+
         ## RECORD EVENT FOR PRE-CHAOS CHECK
         - name: "[Event]: Generating an Event for PreChaosCheck"
           include_tasks: /utils/common/generate-kubernetes-chaos-events.yml
