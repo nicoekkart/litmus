@@ -9,7 +9,7 @@
 
     - name: "[Connectivity check]: Check if wget works on proxy"
       shell: |
-        kubectl exec -it proxy-nsc-7b84df4f54-gz679 -- wget -O - localhost:8080 --header="NSM-Color: blue"
+        kubectl exec -it $(kubectl get pod | grep proxy | awk '{print $1'})  -- wget -O - localhost:8080 --header="NSM-Color: blue"
       args:
         executable: /bin/bash
       register: wgetcheck
