@@ -18,6 +18,8 @@
     c_ns: "{{ lookup('env','CHAOS_NAMESPACE') }}"
     container_path: "{{ lookup('env','CONTAINER_PATH') }}"
     c_svc_acc: "{{ lookup('env','CHAOS_SERVICE_ACCOUNT') }}"
+    precondition: "{{ lookup('env', 'PRECONDITION') }}"
+    postcondition: "{{ lookup('env', 'POSTCONDITION') }}"
 
   tasks:
     - block:
@@ -61,6 +63,9 @@
 
         - name: "[Status]: Verify that the wget works (pre-chaos)"
           include_tasks: /utils/apps/nsm/nsm_wget_test.yml
+          vars:
+            command: "{{ precondition }}"
+
 
         ## RECORD EVENT FOR PRE-CHAOS CHECK
         - name: "[Event]: Generating an Event for PreChaosCheck"
@@ -90,6 +95,8 @@
 
         - name: "[Status]: Verify that the wget works (post-chaos)"
           include_tasks: /utils/apps/nsm/nsm_wget_test.yml
+          vars:
+            command: "{{ postcondition }}"
             
         ## RECORD EVENT FOR POST-CHAOS CHECK
         - name: "[Event]: Generating an Event for PostChaosCheck"
