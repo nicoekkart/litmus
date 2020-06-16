@@ -20,6 +20,8 @@
     c_svc_acc: "{{ lookup('env','CHAOS_SERVICE_ACCOUNT') }}"
     precondition: "{{ lookup('env', 'PRECONDITION') }}"
     postcondition: "{{ lookup('env', 'POSTCONDITION') }}"
+    entrypoint_pre_post_test: "{{ lookup('env', 'ENTRYPOINT') }}"
+    c_entrypoint_pre_post_test: "{{ lookup('env', 'ENTRYPOINT_CONTAINER') }}"
 
   tasks:
     - block:
@@ -65,6 +67,8 @@
           include_tasks: /utils/apps/nsm/nsm_wget_test.yml
           vars:
             command: "{{ precondition }}"
+            entrypoint: "{{ entrypoint_pre_post_test }}"
+            c_entrypoint: "{{ c_entrypoint_pre_post_test }}"
 
 
         ## RECORD EVENT FOR PRE-CHAOS CHECK
@@ -97,6 +101,8 @@
           include_tasks: /utils/apps/nsm/nsm_wget_test.yml
           vars:
             command: "{{ postcondition }}"
+            entrypoint: "{{ entrypoint_pre_post_test }}"
+            c_entrypoint: "{{ c_entrypoint_pre_post_test }}"
             
         ## RECORD EVENT FOR POST-CHAOS CHECK
         - name: "[Event]: Generating an Event for PostChaosCheck"

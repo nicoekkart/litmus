@@ -72,6 +72,9 @@ spec:
     - name: POSTCONDITION
       value: 'echo "precondition"'
 
+    - name: ENTRYPOINT
+      value: ''
+
     # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-killer:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
     # For containerd image use: litmuschaos/container-killer:latest

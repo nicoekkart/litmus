@@ -60,6 +60,9 @@ spec:
           - name: POSTCONDITION
             value: 'echo "precondition"'
 
+          - name: ENTRYPOINT
+            value: ''
+
           # Period to wait before injection of chaos in sec 
           - name: RAMP_TIME
             value: ''
